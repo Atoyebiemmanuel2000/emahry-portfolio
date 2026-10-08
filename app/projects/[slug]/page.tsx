@@ -4,8 +4,23 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { projects, caseStudies, slug } from "@/lib/data";
 import Footer from "@/components/Footer";
 export const generateStaticParams=()=>projects.map(p=>({slug:slug(p.name)}));
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}){
-  const p=projects.find(x=>slug(x.name)===(await params).slug); return p?{title:`${p.name} — Case study | Emahry.dev`,description:p.desc}:{};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug: projectSlug } = await params;
+
+  const p = projects.find(
+    (x) => slug(x.name) === projectSlug
+  );
+
+  return p
+    ? {
+        title: `${p.name} — Case study | Emahry.dev`,
+        description: p.desc,
+      }
+    : {};
 }
 export default async function Page({params}:{params:Promise<{slug:string}>}){
   const s=(await params).slug; const i=projects.findIndex(x=>slug(x.name)===s); const c=caseStudies[s];
