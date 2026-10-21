@@ -134,7 +134,7 @@ export default function Hero() {
           </a>
 
           <a
-            href="#contact"
+            href="https://wa.me/2347033054705"
             className="rounded-full border border-line px-6 py-3 transition hover:border-iris"
           >
             Let's talk
